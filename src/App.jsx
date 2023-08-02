@@ -1,43 +1,58 @@
-import { createSignal, onMount } from 'solid-js';
-import styles from './styles/home.module.scss';
+import { createSignal } from 'solid-js';
+import styles from './styles/layout.module.scss';
+import st_choose from './styles/choose.module.scss'
+import st_download from './styles/downloadmenu.module.scss'
 import { ID3Writer } from 'browser-id3-writer';
 import ChooseCoverImg from './assets/ImagePlaceholder.png';
 import { saveAs } from 'file-saver';
 
+
+
+
+
 function App() {
-	const [uploaded, setUploaded] = createSignal(false);
-	const [file, setFile] = createSignal();
-	const [fileName, setFileName] = createSignal('grab the wheel');
+
+	//? State Management
+	const [uploaded, setUploaded] = createSignal(false); // Upload State
+	const [file, setFile] = createSignal(null); // mp3 File
+	const [fileName, setFileName] = createSignal(''); // File Name
 
 	//* Choose File
 	const ChooseFile = () => {
-		const [dragStatus, setDragStatus] = createSignal(0);
+
+		//? State Management
+		const [dragStatus, setDragStatus] = createSignal(0); // Each Integer represent a state of the drop area
+		const DragStatusClasses = ['leave', 'enter', 'dropped']; // Linked with the Signal above
+		
+		//? In case of an Error Uploading, this will become true and leave a message
 		const [errorUpload, setErrorUpload] = createSignal(false);
-		const DragStatusClasses = ['leave', 'enter', 'dropped'];
 
-		// Changing the File Signal
 
+		//* Handle File Upload
 		const HandleChange = (e) => {
-			setErrorUpload(false);
+
+			setErrorUpload(false); // Remove Error Message
+
+
 			e.preventDefault();
 			e.stopPropagation();
-			setDragStatus(2);
-			const [fileUploaded] = e.target.files;
+			setDragStatus(2); //? Loading State
 
-			//* ArrayBuffer
 
+			const [fileUploaded] = e.target.files; // get the audio file
+
+			//? Conversion process into an ArrayBuffer
 			const reader = new FileReader();
 
 			reader.onload = function () {
-				const arrayBuffer = reader.result;
+				const arrayBuffer = reader.result; // The ArrayBuffer
 				setFile(arrayBuffer);
-				setUploaded(true);
+				setUploaded(true); // Change Upload State into True
 				setFileName(fileUploaded.name);
 			};
 			reader.onerror = function () {
-				//* handle error
+				// handle error
 				setErrorUpload(true);
-				return null;
 			};
 
 			reader.readAsArrayBuffer(fileUploaded);
@@ -45,17 +60,17 @@ function App() {
 
 		return (
 			<>
-				<div class={styles.text}>
+				<div class={st_choose.text}>
 					<h2>Upload the file:</h2>
 					<h3>Supported extensions: mp3/flacc/wav </h3>
-					{errorUpload() && <h4>Error, try again.</h4>}
+					{errorUpload() && <h4>Error, try again.</h4>} {/* In case of Error */}
 				</div>
-				<div class={styles.dragbox}>
+				<div class={st_choose.dragbox}>
 					{dragStatus() == 2 ? (
 						<p>Loading...</p>
 					) : (
 						<img
-							class={styles[DragStatusClasses[dragStatus()]]}
+							class={st_choose[DragStatusClasses[dragStatus()]]}
 							src="../src/assets/upload_button.png"
 						></img>
 					)}
@@ -73,6 +88,8 @@ function App() {
 		);
 	};
 
+
+
 	return (
 		<div class={styles.App}>
 			<h1>Music Tag Editor</h1>
@@ -87,16 +104,12 @@ function App() {
 	);
 }
 
+
+//? Editing Function
 const EditingFile = (props) => {
+
+	
 	const [downloadPhase, setDownloadPhase] = createSignal(false);
-	const Details = [
-		'Title',
-		'Artists',
-		'Album',
-		'Album Artist',
-		'Year',
-		'Track #',
-	];
 	const [cover, setCover] = createSignal(null);
 	const [songDetails, setSongDetails] = createSignal({
 		Title: '',
@@ -106,7 +119,18 @@ const EditingFile = (props) => {
 		Year: 2000,
 		TrackListNumber: 0,
 	});
+	
+	
+	const Details = [ // Input Values
+		'Title',
+		'Artists',
+		'Album',
+		'Album Artist',
+		'Year',
+		'Track #',
+	];
 
+	//? Handling all the Input to change the songDetails Object
 	const HandleSongDetails = (type, info) => {
 		if (type == 'Title') {
 			setSongDetails({ ...songDetails(), Title: info });
@@ -123,12 +147,16 @@ const EditingFile = (props) => {
 		}
 	};
 
+	//? Handling the Change of Cover
 	const CoverChoice = () => {
+
+
 		const HandleInputChange = (e) => {
 			e.preventDefault();
 			e.stopPropagation();
 			const [fileUploaded] = e.target.files;
 
+			// Converting the file to Array Buffer
 			const reader = new FileReader();
 			reader.onload = function () {
 				const arrayBuffer = reader.result;
@@ -151,7 +179,7 @@ const EditingFile = (props) => {
 		);
 	};
 
-	const CancelHandle = () => {
+	const CancelHandle = () => { //Cancel Button Task
 		if (confirm('Are you sure to cancel the Task?') == true) {
 			location.reload();
 		}
@@ -204,11 +232,11 @@ const EditingFile = (props) => {
 
 				{downloadPhase() ? (
 					<>
-						<div class={styles.DownloadMenu}>
+						<div class={st_download.DownloadMenu}>
 							<h2>Confirmation Page?</h2>
-							<div class={styles.SongInfoBox}>
+							<div class={st_download.SongInfoBox}>
 								<img src={cover()[0]}></img>
-								<div class={styles.SongDetailsBox}>
+								<div class={st_download.SongDetailsBox}>
 									<p>Title: {songDetails().Title}</p>
 									<p>Artists: {songDetails().Artists}</p>
 									<p>Album: {songDetails().Album}</p>
@@ -217,12 +245,15 @@ const EditingFile = (props) => {
 									<p>TrackList #: {songDetails().TrackListNumber}</p>
 								</div>
 							</div>
-							<button onClick={HandleDownload} class={styles.DownloadButton}>
+							<button
+								onClick={HandleDownload}
+								class={st_download.DownloadButton}
+							>
 								Convert and Download
 							</button>
 						</div>
 						<div
-							class={styles.BackgroundDrop}
+							class={st_download.BackgroundDrop}
 							onClick={() => setDownloadPhase(false)}
 						></div>
 					</>

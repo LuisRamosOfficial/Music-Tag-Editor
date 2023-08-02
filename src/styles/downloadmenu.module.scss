@@ -1,0 +1,75 @@
+div.BackgroundDrop {
+	
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: black;
+	opacity: 0.5;
+	z-index: 4;
+}
+
+div.DownloadMenu {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80vw;
+	height: 90vh;
+	border-radius: 20px;
+	background-color: #1d1d1e;
+	z-index: 5;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	h2 {
+		margin-top: 3rem;
+		font-size: 3rem;
+		font-weight: 900;
+	}
+
+	div.SongInfoBox {
+		margin-top: 3.5rem;
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		img {
+			aspect-ratio: 1/1;
+			width: 20rem;
+			overflow: hidden;
+		}
+		div.SongDetailsBox {
+			margin-left: 2rem;
+			height: 100%;
+			p {
+				margin-bottom: 1rem;
+				font-size: 1.4rem;
+			}
+
+		}
+	}
+
+	button.DownloadButton {
+		width: 20%;
+		padding: 1rem;
+		margin-top: 4rem;
+		color: white;
+		font-size: 1.3rem;
+		transition: transform 200ms ease-out;
+		font-weight: 900;
+		background-color: #007e0d;
+		cursor: pointer;
+		border: none;
+		outline: none;
+		border-radius: 30px;
+		&:hover {
+			transform: scale(1.1);
+		}
+		&:active {
+			background-color: #004e08;
+
+		}
+	}
+
+}

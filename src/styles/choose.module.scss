@@ -1,0 +1,56 @@
+div.text {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	h2 {
+		font-size: 2.5rem;
+	}
+	h3 {
+		font-size: 1rem;
+		color: gray;
+		font-weight: 100;
+	}
+	h4 {
+		font-size: 2rem;
+		color: rgb(113, 0, 0);
+	}
+}
+div.dragbox {
+	padding: 3rem;
+	margin: 1rem 0rem 1rem 0rem;
+	p {
+		font-weight: 700;
+		font-size: 2rem;
+	}
+	position: relative;
+	margin-left: 3rem;
+	width: 20%;
+	display: grid;
+	place-items: center;
+	aspect-ratio: 1/1;
+	border-radius: 60px;
+	border: dashed 4px rgb(106, 106, 106);
+	img.leave {
+		opacity: 0.5;
+	}
+	img {
+		transition: 200ms all ease-out;
+		width: 55%;
+	}
+	img.enter {
+		opacity: 0.8;
+		transform: translateY(-20px);
+	}
+	img.drop {
+		opacity: 0.8;
+	}
+	input {
+		cursor: pointer;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+}
