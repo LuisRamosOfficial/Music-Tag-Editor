@@ -54,3 +54,27 @@ div.dragbox {
 		left: 0;
 	}
 }
+
+@media screen and (max-width: 700px) {
+	div.text {
+		h2 {
+			font-size: 1.7rem;
+		}
+		h3 {
+			font-size: 1rem;
+			text-align: center;
+		}
+		h4 {
+			font-size: 1rem;
+		}
+	}
+	div.dragbox {
+		p {
+			font-weight: 700;
+			font-size: 0.8rem;
+		}
+		width: 20%;	
+		padding: 1rem;
+			margin: 1rem 0rem 1rem 1rem;
+	}
+}

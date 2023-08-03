@@ -1,5 +1,4 @@
 div.BackgroundDrop {
-	
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -46,7 +45,6 @@ div.DownloadMenu {
 				margin-bottom: 1rem;
 				font-size: 1.4rem;
 			}
-
 		}
 	}
 
@@ -68,8 +66,53 @@ div.DownloadMenu {
 		}
 		&:active {
 			background-color: #004e08;
-
 		}
 	}
+}
 
+@media screen and (max-width: 700px) {
+	div.DownloadMenu {
+		width: 80vw;
+		height: 50vh;
+		h2 {
+			margin-top: 1.5rem;
+			font-size: 2rem;
+			font-weight: 900;
+		}
+		div.SongInfoBox {
+			margin-top: 2rem;
+			align-items: center;
+			img {
+				width: 10rem;
+			}
+			div.SongDetailsBox {
+				margin-left: 1rem;
+				height: 100%;
+				p {
+					margin-bottom: 0.5rem;
+					font-size: 1rem;
+				}
+			}
+		}
+		button.DownloadButton {
+		width: 40%;
+		padding: 1rem;
+		margin-top: 1rem;
+		color: white;
+		font-size: 0.7rem;
+		transition: transform 200ms ease-out;
+		font-weight: 900;
+		background-color: #007e0d;
+		cursor: pointer;
+		border: none;
+		outline: none;
+		border-radius: 30px;
+		&:hover {
+			transform: scale(1.1);
+		}
+		&:active {
+			background-color: #004e08;
+		}
+	}
+	}
 }

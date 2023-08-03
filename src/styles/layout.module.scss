@@ -19,7 +19,6 @@ div.App {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-
 	}
 }
 
@@ -136,17 +135,74 @@ div.EditingFile {
 				background-color: #7e0000;
 				&:hover {
 					background-color: #570000;
-					
 				}
 			}
 			&:last-child {
 				background-color: #007e0d;
 				&:hover {
 					background-color: #005b09;
-					
 				}
 			}
 		}
 	}
 }
 
+@media screen and (max-width: 700px) {
+	div.App {
+		h1 {
+			font-size: 3rem;
+		}
+		div.menu {
+			border-radius: 25px;
+		}
+	}
+}
+
+@media screen and (max-width: 930px) {
+	div.EditingFile {
+		grid-template-rows: auto auto auto auto auto;
+		grid-template-areas:
+			'b b b b'
+			'a a a a'
+			'c c c c'
+			'd d d d'
+			'f f f f'
+			'g g g g'
+			'h h h h'
+			'i i i i'
+			'e e e e';
+		div.coverbox {
+			margin: 0;
+			place-self: center;
+			width: 40vw;
+			aspect-ratio: 1/1;
+		}
+		div.fileName {
+			width: 100%;
+			height: 100%;
+			display: grid;
+			grid-area: b;
+			place-items: center;
+			p.name {
+				margin-bottom: 3rem;
+				font-size: 2rem;
+				text-align: center;
+			}
+		}
+		div.buttons {
+			margin-top: 2rem;
+		place-self: center;
+		grid-area: e;
+		display: flex;
+		flex-direction: initial;
+		justify-content: space-around;
+		width: 87%;
+		height: 90%;
+		align-items: center;
+		button.buttonConvert {
+			width: 30%;
+			font-size: 1.3rem;
+		}
+	}
+	}
+}
