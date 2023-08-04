@@ -79,6 +79,6 @@ Contributions to the Music Tag Editor Website are welcome! If you find any issue
 If you have any questions or need further assistance, you can contact the project maintainers at:
 
 - Email: luisviegasr2@gmail+github.com
-- GitHub: [Your GitHub Profile](https://github.com/LuisRamosOfficial)
+- GitHub: [LuisRamosOfficial](https://github.com/LuisRamosOfficial)
 
 Thank you for using the Music Tag Editor Website! Happy editing! 🎵🎶
