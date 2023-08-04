@@ -5,7 +5,7 @@ import st_download from './styles/downloadmenu.module.scss'
 import { ID3Writer } from 'browser-id3-writer';
 import ChooseCoverImg from './assets/ImagePlaceholder.png';
 import { saveAs } from 'file-saver';
-
+import UploadImg from './assets/upload_button.png'
 
 
 
@@ -71,7 +71,7 @@ function App() {
 					) : (
 						<img
 							class={st_choose[DragStatusClasses[dragStatus()]]}
-							src="../src/assets/upload_button.png"
+							src={UploadImg}
 						></img>
 					)}
 
