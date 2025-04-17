@@ -3,6 +3,8 @@
 
 ![Music Tag Editor Website](Screenshots/1.png)
 
+![image](https://github.com/user-attachments/assets/a0c0f2a7-86b1-4ecb-833c-93b7a07c6e27)
+
 The Music Tag Editor Website is a web application built with SolidJs and utilizes the `browser-id3-writer` npm package to provide users with the ability to edit the metadata (tags) of their music files directly in the browser. This web application allows users to update metadata fields such as Title, Artist, Album, Album Artist, Year, Genre, and Cover Art for their MP3 files in a simple and user-friendly interface.
 
 ## Features
